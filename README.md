@@ -20,11 +20,6 @@ This is using in-memory Mongo database since seems enough for the complexity and
 - Deployment into cloud from travis
 - JavaDoc
 
-### Why just In-Memory DB?
-
-Seems enough for the purpose.
-Work to have a real one is not complex but time consuming.
-
 ### Why MongoDb?
 
 Although not a big fan of MongoDb seemed good for the purpose.

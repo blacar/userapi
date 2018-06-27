@@ -55,6 +55,11 @@ public final class UserControllerTests {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(
                 MockMvcResultMatchers.jsonPath(
+                    "$.id", Matchers.is("1")
+                )
+            )
+            .andExpect(
+                MockMvcResultMatchers.jsonPath(
                     "$.name", Matchers.is(name)
                 )
             );
@@ -75,6 +80,11 @@ public final class UserControllerTests {
             )
             .andExpect(
                 MockMvcResultMatchers.jsonPath(
+                    "$[0].id", Matchers.is("1")
+                )
+            )
+            .andExpect(
+                MockMvcResultMatchers.jsonPath(
                     "$[0].name", Matchers.is(name)
                 )
             );
@@ -92,6 +102,11 @@ public final class UserControllerTests {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(
                 MockMvcResultMatchers.jsonPath(
+                    "$.id", Matchers.is("1")
+                )
+            )
+            .andExpect(
+                MockMvcResultMatchers.jsonPath(
                     "$.name", Matchers.is(name)
                 )
             );
@@ -99,18 +114,22 @@ public final class UserControllerTests {
 
     private void mockFindOne(final String name) {
         final User user = this.mockUser(name);
+        user.setId("1");
         given(users.findById(Mockito.anyString()))
             .willReturn(Optional.of(user));
     }
 
     private void mockSave(final User user) {
+        user.setId("1");
         given(users.save(Mockito.any(User.class)))
             .willReturn(user);
     }
 
     private void mockFindAll(final String name) {
+        final User user = this.mockUser(name);
+        user.setId("1");
         given(users.findAll())
-            .willReturn(Arrays.asList(this.mockUser(name)));
+            .willReturn(Arrays.asList(user));
     }
 
     private User mockUser(final String name) {

@@ -48,7 +48,6 @@ public class UserController {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    @Cacheable
     public List<User> getAll() {
         return Lists.newArrayList(this.users.findAll());
     }
@@ -58,7 +57,7 @@ public class UserController {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    @Cacheable
+    @Cacheable(key = "#id", unless = "#result == null")
     public User getOne(@PathVariable("id") final String id) {
         return this.users.findById(id)
             .orElseThrow(
@@ -71,7 +70,7 @@ public class UserController {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    @CachePut
+    @CachePut(key = "#id", unless = "#result == null")
     public User update(
         @PathVariable("id") final String id,
         @Valid @RequestBody final User user
@@ -88,7 +87,7 @@ public class UserController {
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    @CacheEvict
+    @CacheEvict(key = "#id")
     public void delete(@PathVariable("id") final String id) {
         final User actual = this.users.findById(id)
             .orElseThrow(
