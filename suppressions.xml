@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+<suppressions>
+    <!-- EXCLUDE CHECKS -->
+    <suppress checks="JavadocStyleCheck" files=".*"/>
+    <suppress checks="JavadocVariable" files=".*"/>
+    <suppress checks="JavadocMethod" files=".*"/>
+    <suppress checks="JavadocType" files=".*"/>
+    <suppress checks="HiddenField" files="User\.java"/>
+    <suppress checks="DesignForExtension" files="UserController\.java"/>
+    <!-- EXCLUDE FILES -->
+    <suppress files="UserApiApplication\.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="MongoConfig\.java" checks="[a-zA-Z0-9]*"/>
+</suppressions>

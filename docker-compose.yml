@@ -1,0 +1,27 @@
+version: '2'
+
+networks:
+  default:
+    driver: bridge
+
+services:
+
+  demo-app:
+    image: userapi
+    links:
+      - memcached
+    depends_on:
+      - memcached
+    ports:
+      - 8080:8080
+
+  mongodb:
+    image: mongo:3.0.4
+    ports:
+      - "27017:27017"
+    command: mongod --smallfiles
+
+  memcached:
+    image: memcached:alpine
+    ports:
+      - 11211:11211

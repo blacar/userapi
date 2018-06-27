@@ -1,0 +1,7 @@
+# MEMCACHED CACHE
+memcached:
+  cache:
+    servers: memcached:11211
+    mode: static
+    expirations: 60
+    prefix: memcached:blacarapps:userapi
