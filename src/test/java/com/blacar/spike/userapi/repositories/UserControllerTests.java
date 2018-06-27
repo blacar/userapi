@@ -1,5 +1,7 @@
 package com.blacar.spike.userapi.repositories;
 
+import com.blacar.spike.userapi.UserApiApplication;
+import com.blacar.spike.userapi.config.MongoConfig;
 import com.blacar.spike.userapi.controllers.UserController;
 import com.blacar.spike.userapi.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;

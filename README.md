@@ -13,7 +13,6 @@ This is using in-memory Mongo database since seems enough for the complexity and
 - Allow to build docker image for local testing
 
 ### TODO:
-- Remove embedded mongo in prod release
 - Better API documentation
 - Smaller container using "alpine" or other approaches
 - Better warning suppressions
@@ -35,18 +34,10 @@ or H2 in combination with jOOQ, or Spring Data JDBC.
 
 ### Usage:
 
-Build:
-**mvn clean install [docker:build]**
+Build: mvn clean install docker:build
 
-Option 1:
+Start: docker-compose up
 
-java -jar ./target/userapi-0.0.1-SNAPSHOT.jar
-
-Option 2: With memcache using docker 
-
-START: docker-compose up -d
-
-STOP: docker-compose down
 
 ### API Usage
 

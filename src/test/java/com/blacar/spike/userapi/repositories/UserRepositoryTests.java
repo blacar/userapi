@@ -1,10 +1,11 @@
 package com.blacar.spike.userapi.repositories;
 
+import com.blacar.spike.userapi.UserApiApplication;
+import com.blacar.spike.userapi.config.MongoConfig;
 import com.blacar.spike.userapi.domain.User;
 import com.google.common.collect.ImmutableList;
 import java.util.List;
 import org.assertj.core.util.Lists;
-import org.bson.types.ObjectId;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -17,7 +18,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes={UserApiApplication.class,MongoConfig.class})
 public class UserRepositoryTests {
 
     @Autowired

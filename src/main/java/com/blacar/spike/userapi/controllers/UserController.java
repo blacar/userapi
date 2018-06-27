@@ -7,6 +7,9 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @checkstyle DesignForExtension (100 lines)
  */
 @RestController
+@CacheConfig(cacheNames = {"users"})
 public class UserController {
 
     private final UserRepository users;
@@ -44,6 +48,7 @@ public class UserController {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
+    @Cacheable
     public List<User> getAll() {
         return Lists.newArrayList(this.users.findAll());
     }
@@ -53,7 +58,7 @@ public class UserController {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    @Cacheable("user")
+    @Cacheable
     public User getOne(@PathVariable("id") final String id) {
         return this.users.findById(id)
             .orElseThrow(
@@ -66,6 +71,7 @@ public class UserController {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
+    @CachePut
     public User update(
         @PathVariable("id") final String id,
         @Valid @RequestBody final User user
@@ -82,6 +88,7 @@ public class UserController {
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
+    @CacheEvict
     public void delete(@PathVariable("id") final String id) {
         final User actual = this.users.findById(id)
             .orElseThrow(

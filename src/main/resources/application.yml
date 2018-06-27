@@ -1,4 +1,8 @@
-# MEMCACHED CACHE
+spring:
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
 memcached:
   cache:
     servers: memcached:11211

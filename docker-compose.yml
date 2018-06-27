@@ -10,8 +10,10 @@ services:
     image: userapi
     links:
       - memcached
+      - mongodb
     depends_on:
       - memcached
+      - mongodb
     ports:
       - 8080:8080
 
